@@ -39,4 +39,13 @@ folder target -> gatling -> index.html
 ![TestReport](.\screenshot\Test_Report.jpg)
 
 
+### Running inside maven docker image
 
+```
+docker run -it --rm --name apitesting -v "$(pwd)":/tmp/api -w /tmp/api maven:3.3-jdk-8 mvn clean test -Dtest=KarateJunit
+```
+
+#### Performance testing inside docker
+```
+docker run -it --rm --name apitesting -v "$(pwd)":/tmp/api -w /tmp/api maven:3.3-jdk-8 mvn clean test-compile gatling:test -Dgatling.simulationClass=performance.LoadTestingSimulation -Dkarate.env=ET
+```

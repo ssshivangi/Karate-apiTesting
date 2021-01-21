@@ -34,6 +34,8 @@ Feature: GET: Top rated movies Validations
     And request ''
     When method GET
     Then status 401
+    * def results = response
+    * match results == { "status_code": 7, "status_message": "Invalid API key: You must be granted a valid key.", "success": false }
     
    Scenario: Validate 422 error code
 
@@ -45,5 +47,8 @@ Feature: GET: Top rated movies Validations
     And request ''
     When method GET
     Then status 422
+    * def results = response
+    * match results == {"errors": [    "page must be greater than 0"]}
+    
     
     
